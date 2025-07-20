@@ -1,0 +1,29 @@
+name: Update settings.json from Issue
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  update:
+    if: startsWith(github.event.issue.title, 'Tournament:')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Parse issue body
+        run: echo "${{ github.event.issue.body }}" > new_data.json
+
+      - name: Merge settings
+        run: |
+          jq -s '.[0] * .[1]' settings.json new_data.json > merged.json
+          mv merged.json settings.json
+
+      - name: Commit & Push
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git commit -am "🔧 Update settings from issue #${{ github.event.issue.number }}"
+          git push
