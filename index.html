@@ -33,7 +33,7 @@
     Having trouble submitting? <a id="fallbackLink" href="#" target="_blank">Open Issue Manually</a>
   </p>
 
-  <p class="version">UI Version: 1.0.7</p>
+  <p class="version">UI Version: 1.0.8</p>
 
   <script>
     let currentData = {};
@@ -52,6 +52,8 @@
         container.innerHTML = "<h2>Edit Existing Tournaments</h2>";
 
         Object.entries(currentData).forEach(([name, urls]) => {
+          if (!urls || typeof urls !== 'object') return; // ✅ skip null/deleted tournaments
+
           const safeName = encodeURIComponent(name);
           const blockId = `block_${safeName}`;
 
@@ -61,9 +63,9 @@
               <label>UID</label>
               <input name="uid_${safeName}" value="${urls.uid || ''}" />
               <label>Participants URL</label>
-              <input name="participants_${safeName}" value="${urls.participants}" />
+              <input name="participants_${safeName}" value="${urls.participants || ''}" />
               <label>Events URL</label>
-              <input name="events_${safeName}" value="${urls.events}" />
+              <input name="events_${safeName}" value="${urls.events || ''}" />
               <button type="button" onclick="updateSingleTournament('${name}', '${safeName}')">Update</button>
               <button type="button" onclick="deleteTournament('${name}')">Delete</button>
             </div>
@@ -71,7 +73,7 @@
         });
       } catch (err) {
         alert("❌ Failed to load settings.json. Make sure it exists and is valid.");
-        console.error(err);
+        console.error("🔍 Full error details:", err);
       }
     }
 
