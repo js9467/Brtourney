@@ -10,18 +10,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Parse issue body
-        run: echo "${{ github.event.issue.body }}" > new_data.json
+      - name: Parse issue content
+        run: echo "${{ github.event.issue.body }}" > update.json
 
-      - name: Merge settings
+      - name: Merge into settings.json
         run: |
-          jq -s '.[0] * .[1]' settings.json new_data.json > merged.json
+          jq -s '.[0] * .[1]' settings.json update.json > merged.json
           mv merged.json settings.json
 
-      - name: Commit & Push
+      - name: Commit and push
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
