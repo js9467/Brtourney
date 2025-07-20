@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tournament Feed Manager</title>
+  <style>
+    body { font-family: sans-serif; max-width: 800px; margin: auto; padding: 20px; }
+    h1, h2, h3 { margin-top: 30px; }
+    label { display: block; margin-top: 10px; font-weight: bold; }
+    input { width: 100%; padding: 6px; margin-bottom: 10px; }
+    button { padding: 10px 15px; margin-top: 10px; }
+    .tournament-block { border: 1px solid #ccc; padding: 15px; margin-bottom: 20px; border-radius: 8px; }
+    #fallbackLink { display: inline-block; margin-top: 10px; color: blue; text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h1>Tournament Feed Manager</h1>
+  <div id="tournamentList"></div>
+
+  <h2>Add New Tournament</h2>
+  <form id="newTournamentForm">
+    <label>Tournament Name</label>
+    <input name="name" required />
+    <label>Participants URL</label>
+    <input name="participants" required />
+    <label>Events URL</label>
+    <input name="events" required />
+    <button type="submit">Add Tournament</button>
+  </form>
+
+  <p>
+    Having trouble submitting? <a id="fallbackLink" href="#" target="_blank">Open Issue Manually</a>
+  </p>
+
+  <script>
+    let currentData = {};
+
+    async function loadSettings() {
+      try {
+        const res = await fetch('settings.json');
+        currentData = await res.json();
+        const container = document.getElementById("tournamentList");
+        container.innerHTML = "<h2>Current Tournaments</h2>";
+
+        Object.entries(currentData).forEach(([name, urls]) => {
+          const safeName = encodeURIComponent(name);  // ensure input names are safe
+          container.innerHTML += `
+            <div class="tournament-block">
+              <h3>${name}</h3>
+              <label>Participants URL</label>
+              <input name="${safeName}_participants" value="${urls.participants}" />
+              <label>Events URL</label>
+              <input name="${safeName}_events" value="${urls.events}" />
+            </div>
+          `;
+        });
+
+        const saveBtn = document.createElement("button");
+        saveBtn.innerText = "Submit Changes";
+        saveBtn.type = "button"; // prevent accidental form submission
+        saveBtn.onclick = submitChanges;
+        container.appendChild(saveBtn);
+      } catch (err) {
+        alert("❌ Failed to load settings.json. Make sure it exists and is valid.");
+        console.error(err);
+      }
+    }
+
+    function submitChanges() {
+      const inputs = document.querySelectorAll("#tournamentList input");
+      const update = {};
+
+      inputs.forEach(input => {
+        if (!input.name.includes("_")) return;
+        const [encodedName, type] = input.name.split("_");
+        const name = decodeURIComponent(encodedName);
+        if (!update[name]) update[name] = {};
+        update[name][type] = input.value.trim();
+      });
+
+      submitIssue(update);
+    }
+
+    document.getElementById("newTournamentForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const name = form.name.value.trim();
+      const participants = form.participants.value.trim();
+      const events = form.events.value.trim();
+      if (!name || !participants || !events) return;
+
+      const update = {
+        [name]: { participants, events }
+      };
+
+      submitIssue(update);
+    });
+
+    function submitIssue(updateData) {
+      const body = JSON.stringify(updateData, null, 2);
+      const title = `Tournament: Update ${new Date().toISOString()}`;
+
+      // ✅ Use backticks to interpolate variables
+      const url = `https://github.com/js9467/Brtourney/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
+
+      // Show in fallback link
+      document.getElementById("fallbackLink").href = url;
+
+      // Open new tab (attempt)
+      const win = window.open(url, "_blank");
+
+      if (!win || win.closed || typeof win.closed === "undefined") {
+        alert("⚠️ Popup blocked. Use the fallback link below.");
+      }
+
+      console.log("📎 Issue URL:", url);
+    }
+
+    loadSettings();
+  </script>
+</body>
+</html>
