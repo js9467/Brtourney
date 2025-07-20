@@ -7,7 +7,10 @@
     "participants": "https://example.com/edisto/participants",
     "events": "https://example.com/edisto/events"
   },
-  "Jay Slaughterbeck": null,
+  "Jay Slaughterbeck": {
+    "participants": "H",
+    "events": "N"
+  },
   "Bbbb": null,
   "Dhdbb": null
 }
