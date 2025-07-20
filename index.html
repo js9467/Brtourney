@@ -43,23 +43,26 @@
         container.innerHTML = "<h2>Current Tournaments</h2>";
 
         Object.entries(currentData).forEach(([name, urls]) => {
+          const safeName = encodeURIComponent(name);  // ensure input names are safe
           container.innerHTML += `
             <div class="tournament-block">
               <h3>${name}</h3>
               <label>Participants URL</label>
-              <input name="${name}_participants" value="${urls.participants}" />
+              <input name="${safeName}_participants" value="${urls.participants}" />
               <label>Events URL</label>
-              <input name="${name}_events" value="${urls.events}" />
+              <input name="${safeName}_events" value="${urls.events}" />
             </div>
           `;
         });
 
         const saveBtn = document.createElement("button");
         saveBtn.innerText = "Submit Changes";
+        saveBtn.type = "button"; // prevent accidental form submission
         saveBtn.onclick = submitChanges;
         container.appendChild(saveBtn);
       } catch (err) {
         alert("❌ Failed to load settings.json. Make sure it exists and is valid.");
+        console.error(err);
       }
     }
 
@@ -69,7 +72,8 @@
 
       inputs.forEach(input => {
         if (!input.name.includes("_")) return;
-        const [name, type] = input.name.split("_");
+        const [encodedName, type] = input.name.split("_");
+        const name = decodeURIComponent(encodedName);
         if (!update[name]) update[name] = {};
         update[name][type] = input.value.trim();
       });
@@ -95,18 +99,21 @@
     function submitIssue(updateData) {
       const body = JSON.stringify(updateData, null, 2);
       const title = `Tournament: Update ${new Date().toISOString()}`;
+
+      // ✅ Use backticks to interpolate variables
       const url = `https://github.com/js9467/Brtourney/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
 
-      // Update fallback link
+      // Show in fallback link
       document.getElementById("fallbackLink").href = url;
 
-      // Attempt to open the issue page
+      // Open new tab (attempt)
       const win = window.open(url, "_blank");
 
-      // If blocked, user can use fallback
-      if (!win || win.closed || typeof win.closed === 'undefined') {
-        alert("⚠️ Unable to open issue automatically. Please click the link below to open it manually.");
+      if (!win || win.closed || typeof win.closed === "undefined") {
+        alert("⚠️ Popup blocked. Use the fallback link below.");
       }
+
+      console.log("📎 Issue URL:", url);
     }
 
     loadSettings();
