@@ -6,5 +6,9 @@
   "Edisto Invitational": {
     "participants": "https://example.com/edisto/participants",
     "events": "https://example.com/edisto/events"
+  },
+  "Jay Slaughterbeck": {
+    "participants": "H",
+    "events": "b"
   }
 }
