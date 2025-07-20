@@ -19,9 +19,5 @@
     "participants": "https://example.com/kids/participants",
     "events": "https://example.com/kids/events"
   },
-  "Test": {
-    "uid": "test_2025",
-    "participants": "Test",
-    "events": "Test"
-  }
+  "Test": null
 }
