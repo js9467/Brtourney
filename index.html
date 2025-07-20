@@ -8,7 +8,7 @@
     h1, h2, h3 { margin-top: 30px; }
     label { display: block; margin-top: 10px; font-weight: bold; }
     input { width: 100%; padding: 6px; margin-bottom: 10px; }
-    button { padding: 10px 15px; margin-top: 10px; }
+    button { padding: 10px 15px; margin-top: 10px; margin-right: 10px; }
     .tournament-block { border: 1px solid #ccc; padding: 15px; margin-bottom: 20px; border-radius: 8px; }
     #fallbackLink { display: inline-block; margin-top: 10px; color: blue; text-decoration: underline; }
     .version { font-size: 0.8em; color: gray; margin-top: 20px; }
@@ -33,7 +33,7 @@
     Having trouble submitting? <a id="fallbackLink" href="#" target="_blank">Open Issue Manually</a>
   </p>
 
-  <p class="version">UI Version: 1.0.5</p>
+  <p class="version">UI Version: 1.0.6</p>
 
   <script>
     let currentData = {};
@@ -57,6 +57,7 @@
               <label>Events URL</label>
               <input name="events_${safeName}" value="${urls.events}" />
               <button type="button" onclick="updateSingleTournament('${name}', '${safeName}')">Update</button>
+              <button type="button" onclick="deleteTournament('${name}')">Delete</button>
             </div>
           `;
         });
@@ -83,6 +84,17 @@
           participants,
           events
         }
+      };
+
+      submitIssue(update);
+    }
+
+    function deleteTournament(name) {
+      if (!confirm(`Are you sure you want to delete "${name}"?`)) return;
+
+      // Set the tournament key to null for removal
+      const update = {
+        [name]: null
       };
 
       submitIssue(update);
