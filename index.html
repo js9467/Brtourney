@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tournament Settings</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    label { display: block; margin-top: 10px; }
+    input { width: 100%; padding: 5px; }
+    button { margin-top: 15px; padding: 10px 15px; }
+  </style>
+</head>
+<body>
+  <h1>Update Tournament URLs</h1>
+  <form id="settingsForm">
+    <div id="formFields"></div>
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    const tournaments = {
+      "Big Rock": {},
+      "Edisto Invitational": {}
+    };
+
+    fetch('settings.json')
+      .then(response => response.json())
+      .then(data => {
+        Object.entries(data).forEach(([name, urls]) => {
+          const container = document.getElementById("formFields");
+          container.innerHTML += `<h3>${name}</h3>
+            <label>Participants URL: <input name="${name}_participants" value="${urls.participants}" /></label>
+            <label>Events URL: <input name="${name}_events" value="${urls.events}" /></label>`;
+        });
+      });
+
+    document.getElementById("settingsForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const jsonUpdate = {};
+      for (const [key, value] of formData.entries()) {
+        const [tournament, type] = key.split("_");
+        if (!jsonUpdate[tournament]) jsonUpdate[tournament] = {};
+        jsonUpdate[tournament][type] = value;
+      }
+
+      const issueBody = JSON.stringify(jsonUpdate, null, 2);
+      const issueTitle = `Tournament: Update settings ${new Date().toISOString()}`;
+
+      const issueUrl = `https://github.com/YOUR_USERNAME/YOUR_REPO/issues/new?title=${encodeURIComponent(issueTitle)}&body=${encodeURIComponent(issueBody)}`;
+      window.open(issueUrl, "_blank");
+    });
+  </script>
+</body>
+</html>
