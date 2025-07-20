@@ -33,7 +33,7 @@
     Having trouble submitting? <a id="fallbackLink" href="#" target="_blank">Open Issue Manually</a>
   </p>
 
-  <p class="version">UI Version: 1.0.4</p>
+  <p class="version">UI Version: 1.0.5</p>
 
   <script>
     let currentData = {};
@@ -43,43 +43,47 @@
         const res = await fetch('settings.json');
         currentData = await res.json();
         const container = document.getElementById("tournamentList");
-        container.innerHTML = "<h2>Current Tournaments</h2>";
+        container.innerHTML = "<h2>Edit Existing Tournaments</h2>";
 
         Object.entries(currentData).forEach(([name, urls]) => {
           const safeName = encodeURIComponent(name);
+          const blockId = `block_${safeName}`;
+
           container.innerHTML += `
-            <div class="tournament-block">
+            <div class="tournament-block" id="${blockId}">
               <h3>${name}</h3>
               <label>Participants URL</label>
-              <input name="${safeName}_participants" value="${urls.participants}" />
+              <input name="participants_${safeName}" value="${urls.participants}" />
               <label>Events URL</label>
-              <input name="${safeName}_events" value="${urls.events}" />
+              <input name="events_${safeName}" value="${urls.events}" />
+              <button type="button" onclick="updateSingleTournament('${name}', '${safeName}')">Update</button>
             </div>
           `;
         });
-
-        const saveBtn = document.createElement("button");
-        saveBtn.innerText = "Submit Changes";
-        saveBtn.type = "button";
-        saveBtn.onclick = submitChanges;
-        container.appendChild(saveBtn);
       } catch (err) {
         alert("❌ Failed to load settings.json. Make sure it exists and is valid.");
         console.error(err);
       }
     }
 
-    function submitChanges() {
-      const inputs = document.querySelectorAll("#tournamentList input");
-      const update = {};
+    function updateSingleTournament(name, safeName) {
+      const participantsInput = document.querySelector(`input[name="participants_${safeName}"]`);
+      const eventsInput = document.querySelector(`input[name="events_${safeName}"]`);
 
-      inputs.forEach(input => {
-        if (!input.name.includes("_")) return;
-        const [encodedName, type] = input.name.split("_");
-        const name = decodeURIComponent(encodedName);
-        if (!update[name]) update[name] = {};
-        update[name][type] = input.value.trim();
-      });
+      if (!participantsInput || !eventsInput) {
+        alert(`❌ Could not find input fields for ${name}`);
+        return;
+      }
+
+      const participants = participantsInput.value.trim();
+      const events = eventsInput.value.trim();
+
+      const update = {
+        [name]: {
+          participants,
+          events
+        }
+      };
 
       submitIssue(update);
     }
@@ -101,7 +105,7 @@
 
     function submitIssue(updateData) {
       try {
-        const body = JSON.stringify(updateData, null, 2); // Clean, valid JSON
+        const body = JSON.stringify(updateData, null, 2);
         const title = `Tournament: Update ${new Date().toISOString()}`;
         const url = `https://github.com/js9467/Brtourney/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
 
