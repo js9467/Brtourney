@@ -33,10 +33,16 @@
     Having trouble submitting? <a id="fallbackLink" href="#" target="_blank">Open Issue Manually</a>
   </p>
 
-  <p class="version">UI Version: 1.0.6</p>
+  <p class="version">UI Version: 1.0.7</p>
 
   <script>
     let currentData = {};
+
+    function slugify(str) {
+      return str.toLowerCase()
+                .replace(/\s+/g, "_")
+                .replace(/[^\w_]/g, "");
+    }
 
     async function loadSettings() {
       try {
@@ -52,6 +58,8 @@
           container.innerHTML += `
             <div class="tournament-block" id="${blockId}">
               <h3>${name}</h3>
+              <label>UID</label>
+              <input name="uid_${safeName}" value="${urls.uid || ''}" />
               <label>Participants URL</label>
               <input name="participants_${safeName}" value="${urls.participants}" />
               <label>Events URL</label>
@@ -68,21 +76,20 @@
     }
 
     function updateSingleTournament(name, safeName) {
+      const uidInput = document.querySelector(`input[name="uid_${safeName}"]`);
       const participantsInput = document.querySelector(`input[name="participants_${safeName}"]`);
       const eventsInput = document.querySelector(`input[name="events_${safeName}"]`);
 
-      if (!participantsInput || !eventsInput) {
-        alert(`❌ Could not find input fields for ${name}`);
+      if (!participantsInput || !eventsInput || !uidInput) {
+        alert(`❌ Missing fields for ${name}`);
         return;
       }
 
-      const participants = participantsInput.value.trim();
-      const events = eventsInput.value.trim();
-
       const update = {
         [name]: {
-          participants,
-          events
+          uid: uidInput.value.trim(),
+          participants: participantsInput.value.trim(),
+          events: eventsInput.value.trim()
         }
       };
 
@@ -92,7 +99,6 @@
     function deleteTournament(name) {
       if (!confirm(`Are you sure you want to delete "${name}"?`)) return;
 
-      // Set the tournament key to null for removal
       const update = {
         [name]: null
       };
@@ -106,10 +112,17 @@
       const name = form.name.value.trim();
       const participants = form.participants.value.trim();
       const events = form.events.value.trim();
+
       if (!name || !participants || !events) return;
 
+      const uid = slugify(name) + "_" + new Date().getFullYear();
+
       const update = {
-        [name]: { participants, events }
+        [name]: {
+          uid,
+          participants,
+          events
+        }
       };
 
       submitIssue(update);
