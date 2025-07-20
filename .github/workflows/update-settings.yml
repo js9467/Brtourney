@@ -4,11 +4,13 @@ on:
   issues:
     types: [opened]
 
+permissions:
+  contents: write
+
 jobs:
   update:
     if: startsWith(github.event.issue.title, 'Tournament:')
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
