@@ -10,6 +10,7 @@
     input { width: 100%; padding: 6px; margin-bottom: 10px; }
     button { padding: 10px 15px; margin-top: 10px; }
     .tournament-block { border: 1px solid #ccc; padding: 15px; margin-bottom: 20px; border-radius: 8px; }
+    #fallbackLink { display: inline-block; margin-top: 10px; color: blue; text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -26,6 +27,10 @@
     <input name="events" required />
     <button type="submit">Add Tournament</button>
   </form>
+
+  <p>
+    Having trouble submitting? <a id="fallbackLink" href="#" target="_blank">Open Issue Manually</a>
+  </p>
 
   <script>
     let currentData = {};
@@ -63,6 +68,7 @@
       const update = {};
 
       inputs.forEach(input => {
+        if (!input.name.includes("_")) return;
         const [name, type] = input.name.split("_");
         if (!update[name]) update[name] = {};
         update[name][type] = input.value.trim();
@@ -90,7 +96,17 @@
       const body = JSON.stringify(updateData, null, 2);
       const title = `Tournament: Update ${new Date().toISOString()}`;
       const url = `https://github.com/js9467/Brtourney/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
-      window.open(url, "_blank");
+
+      // Update fallback link
+      document.getElementById("fallbackLink").href = url;
+
+      // Attempt to open the issue page
+      const win = window.open(url, "_blank");
+
+      // If blocked, user can use fallback
+      if (!win || win.closed || typeof win.closed === 'undefined') {
+        alert("⚠️ Unable to open issue automatically. Please click the link below to open it manually.");
+      }
     }
 
     loadSettings();
