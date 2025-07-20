@@ -13,8 +13,19 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Parse issue content
-        run: echo "${{ github.event.issue.body }}" > update.json
+      - name: Save issue body as JSON
+        run: echo '${{ github.event.issue.body }}' > update.json
+
+      - name: Validate JSON
+        run: |
+          echo "Validating update.json"
+          if jq empty update.json; then
+            echo "✅ JSON is valid"
+          else
+            echo "❌ Invalid JSON in issue body"
+            cat update.json
+            exit 1
+          fi
 
       - name: Merge into settings.json
         run: |
