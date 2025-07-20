@@ -1,0 +1,10 @@
+{
+  "Big Rock": {
+    "participants": "https://example.com/bigrock/participants",
+    "events": "https://example.com/bigrock/events"
+  },
+  "Edisto Invitational": {
+    "participants": "https://example.com/edisto/participants",
+    "events": "https://example.com/edisto/events"
+  }
+}
