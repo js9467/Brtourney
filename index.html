@@ -2,53 +2,94 @@
 <html>
 <head>
   <title>Tournament Settings</title>
+  <meta charset="UTF-8" />
   <style>
-    body { font-family: sans-serif; padding: 20px; }
-    label { display: block; margin-top: 10px; }
-    input { width: 100%; padding: 5px; }
-    button { margin-top: 15px; padding: 10px 15px; }
+    body { font-family: sans-serif; max-width: 800px; margin: auto; padding: 20px; }
+    h2 { margin-top: 30px; }
+    label { display: block; margin-top: 10px; font-weight: bold; }
+    input { width: 100%; padding: 6px; margin-bottom: 10px; }
+    button { padding: 10px 15px; margin-top: 10px; }
+    .tournament-block { border: 1px solid #ccc; padding: 15px; margin-bottom: 20px; border-radius: 8px; }
   </style>
 </head>
 <body>
-  <h1>Update Tournament URLs</h1>
-  <form id="settingsForm">
-    <div id="formFields"></div>
-    <button type="submit">Submit</button>
+  <h1>Tournament Feed Manager</h1>
+  <div id="tournamentList"></div>
+
+  <h2>Add New Tournament</h2>
+  <form id="newTournamentForm">
+    <label>Tournament Name</label>
+    <input name="name" required />
+    <label>Participants URL</label>
+    <input name="participants" required />
+    <label>Events URL</label>
+    <input name="events" required />
+    <button type="submit">Add Tournament</button>
   </form>
 
   <script>
-    const tournaments = {
-      "Big Rock": {},
-      "Edisto Invitational": {}
-    };
+    let currentData = {};
 
-    fetch('settings.json')
-      .then(response => response.json())
-      .then(data => {
-        Object.entries(data).forEach(([name, urls]) => {
-          const container = document.getElementById("formFields");
-          container.innerHTML += `<h3>${name}</h3>
-            <label>Participants URL: <input name="${name}_participants" value="${urls.participants}" /></label>
-            <label>Events URL: <input name="${name}_events" value="${urls.events}" /></label>`;
-        });
+    async function loadSettings() {
+      const res = await fetch('settings.json');
+      currentData = await res.json();
+      const container = document.getElementById("tournamentList");
+      container.innerHTML = "<h2>Current Tournaments</h2>";
+
+      Object.entries(currentData).forEach(([name, urls]) => {
+        container.innerHTML += `
+          <div class="tournament-block">
+            <h3>${name}</h3>
+            <label>Participants URL</label>
+            <input name="${name}_participants" value="${urls.participants}" />
+            <label>Events URL</label>
+            <input name="${name}_events" value="${urls.events}" />
+          </div>
+        `;
       });
 
-    document.getElementById("settingsForm").addEventListener("submit", function(e) {
+      const saveBtn = document.createElement("button");
+      saveBtn.innerText = "Submit Changes";
+      saveBtn.onclick = submitChanges;
+      container.appendChild(saveBtn);
+    }
+
+    function submitChanges() {
+      const inputs = document.querySelectorAll("input");
+      const update = {};
+
+      inputs.forEach(input => {
+        const [name, type] = input.name.split("_");
+        if (!update[name]) update[name] = {};
+        update[name][type] = input.value;
+      });
+
+      submitIssue(update);
+    }
+
+    document.getElementById("newTournamentForm").addEventListener("submit", function(e) {
       e.preventDefault();
-      const formData = new FormData(e.target);
-      const jsonUpdate = {};
-      for (const [key, value] of formData.entries()) {
-        const [tournament, type] = key.split("_");
-        if (!jsonUpdate[tournament]) jsonUpdate[tournament] = {};
-        jsonUpdate[tournament][type] = value;
-      }
+      const form = e.target;
+      const name = form.name.value.trim();
+      const participants = form.participants.value.trim();
+      const events = form.events.value.trim();
+      if (!name || !participants || !events) return;
 
-      const issueBody = JSON.stringify(jsonUpdate, null, 2);
-      const issueTitle = `Tournament: Update settings ${new Date().toISOString()}`;
+      const update = {
+        [name]: { participants, events }
+      };
 
-      const issueUrl = `https://github.com/YOUR_USERNAME/YOUR_REPO/issues/new?title=${encodeURIComponent(issueTitle)}&body=${encodeURIComponent(issueBody)}`;
-      window.open(issueUrl, "_blank");
+      submitIssue(update);
     });
+
+    function submitIssue(updateData) {
+      const body = JSON.stringify(updateData, null, 2);
+      const title = `Tournament: Update ${new Date().toISOString()}`;
+      const url = `https://github.com/YOUR_USERNAME/YOUR_REPO/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
+      window.open(url, "_blank");
+    }
+
+    loadSettings();
   </script>
 </body>
 </html>
