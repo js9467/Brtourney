@@ -1,16 +1,22 @@
 {
   "Big Rock": {
+    "uid": "big_rock_2025",
     "participants": "https://example.com/bigrock/participants",
     "events": "https://example.com/bigrock/events"
   },
   "Edisto Invitational": {
+    "uid": "edisto_invitational_2025",
     "participants": "https://example.com/edisto/participants",
     "events": "https://example.com/edisto/events"
   },
-  "Jay Slaughterbeck": {
-    "participants": "H",
-    "events": "N"
+  "KWLA": {
+    "uid": "kwla_2025",
+    "participants": "https://example.com/kwla/participants",
+    "events": "https://example.com/kwla/events"
   },
-  "Bbbb": null,
-  "Dhdbb": null
+  "Kids Tournament": {
+    "uid": "kids_tournament_2025",
+    "participants": "https://example.com/kids/participants",
+    "events": "https://example.com/kids/events"
+  }
 }
