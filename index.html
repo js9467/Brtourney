@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Tournament Settings</title>
   <meta charset="UTF-8" />
+  <title>Tournament Feed Manager</title>
   <style>
     body { font-family: sans-serif; max-width: 800px; margin: auto; padding: 20px; }
-    h2 { margin-top: 30px; }
+    h1, h2, h3 { margin-top: 30px; }
     label { display: block; margin-top: 10px; font-weight: bold; }
     input { width: 100%; padding: 6px; margin-bottom: 10px; }
     button { padding: 10px 15px; margin-top: 10px; }
@@ -31,37 +31,41 @@
     let currentData = {};
 
     async function loadSettings() {
-      const res = await fetch('settings.json');
-      currentData = await res.json();
-      const container = document.getElementById("tournamentList");
-      container.innerHTML = "<h2>Current Tournaments</h2>";
+      try {
+        const res = await fetch('settings.json');
+        currentData = await res.json();
+        const container = document.getElementById("tournamentList");
+        container.innerHTML = "<h2>Current Tournaments</h2>";
 
-      Object.entries(currentData).forEach(([name, urls]) => {
-        container.innerHTML += `
-          <div class="tournament-block">
-            <h3>${name}</h3>
-            <label>Participants URL</label>
-            <input name="${name}_participants" value="${urls.participants}" />
-            <label>Events URL</label>
-            <input name="${name}_events" value="${urls.events}" />
-          </div>
-        `;
-      });
+        Object.entries(currentData).forEach(([name, urls]) => {
+          container.innerHTML += `
+            <div class="tournament-block">
+              <h3>${name}</h3>
+              <label>Participants URL</label>
+              <input name="${name}_participants" value="${urls.participants}" />
+              <label>Events URL</label>
+              <input name="${name}_events" value="${urls.events}" />
+            </div>
+          `;
+        });
 
-      const saveBtn = document.createElement("button");
-      saveBtn.innerText = "Submit Changes";
-      saveBtn.onclick = submitChanges;
-      container.appendChild(saveBtn);
+        const saveBtn = document.createElement("button");
+        saveBtn.innerText = "Submit Changes";
+        saveBtn.onclick = submitChanges;
+        container.appendChild(saveBtn);
+      } catch (err) {
+        alert("❌ Failed to load settings.json. Make sure it exists and is valid.");
+      }
     }
 
     function submitChanges() {
-      const inputs = document.querySelectorAll("input");
+      const inputs = document.querySelectorAll("#tournamentList input");
       const update = {};
 
       inputs.forEach(input => {
         const [name, type] = input.name.split("_");
         if (!update[name]) update[name] = {};
-        update[name][type] = input.value;
+        update[name][type] = input.value.trim();
       });
 
       submitIssue(update);
@@ -85,7 +89,7 @@
     function submitIssue(updateData) {
       const body = JSON.stringify(updateData, null, 2);
       const title = `Tournament: Update ${new Date().toISOString()}`;
-      const url = `https://github.com/YOUR_USERNAME/YOUR_REPO/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
+      const url = `https://github.com/js9467/Brtourney/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
       window.open(url, "_blank");
     }
 
