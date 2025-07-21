@@ -10,10 +10,6 @@
     "events": "https://www.reeltimeapps.com/live/tournaments/2025-edisto-invitational-billfish/activities"
   },
   "KWLA": null,
-  "Kids Tournament": {
-    "uid": "kids_tournament_2025",
-    "participants": "https://example.com/kids/participants",
-    "events": "https://example.com/kids/events"
-  },
+  "Kids Tournament": null,
   "Test": null
 }
