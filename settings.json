@@ -11,5 +11,10 @@
   },
   "KWLA": null,
   "Kids Tournament": null,
-  "Test": null
+  "Test": null,
+  "Lone Star Shootout": {
+    "uid": "lone_star_shootout_2025",
+    "participants": "https://www.reeltimeapps.com/live/tournaments/2025-lonestar-shootout/participants",
+    "events": "https://www.reeltimeapps.com/live/tournaments/2025-lonestar-shootout/activities"
+  }
 }
