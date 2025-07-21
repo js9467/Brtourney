@@ -30,5 +30,12 @@
     "leaderboard": "https://www.reeltimeapps.com/live/tournaments/2025-river-center-junior-angler-tournament/leaderboards",
     "logo": ""
   },
-  "56th Beach Haven White Marlin Invitational": null
+  "56th Beach Haven White Marlin Invitational": null,
+  "Corpus Christi Big Game Fishing Club": {
+    "uid": "corpus_christi_big_game_fishing_club_2025",
+    "participants": "https://www.reeltimeapps.com/live/tournaments/2025-corpus-christi-big-game-fishing-club/participants",
+    "events": "https://www.reeltimeapps.com/live/tournaments/2025-corpus-christi-big-game-fishing-club/activities",
+    "leaderboard": "https://www.reeltimeapps.com/live/tournaments/2025-corpus-christi-big-game-fishing-club/leaderboards",
+    "logo": "https://cdn.reeltimeapps.com/tournaments/logos/000/000/757/original/LogoLight.png?1747113279"
+  }
 }
