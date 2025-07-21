@@ -26,6 +26,10 @@
     <input name="participants" required />
     <label>Events URL</label>
     <input name="events" required />
+    <label>Leaderboard URL</label>
+    <input name="leaderboard" />
+    <label>Logo URL</label>
+    <input name="logo" />
     <button type="submit">Add Tournament</button>
   </form>
 
@@ -52,7 +56,7 @@
         container.innerHTML = "<h2>Edit Existing Tournaments</h2>";
 
         Object.entries(currentData).forEach(([name, urls]) => {
-          if (!urls || typeof urls !== 'object') return; // ✅ skip null/deleted tournaments
+          if (!urls || typeof urls !== 'object') return;
 
           const safeName = encodeURIComponent(name);
           const blockId = `block_${safeName}`;
@@ -66,6 +70,10 @@
               <input name="participants_${safeName}" value="${urls.participants || ''}" />
               <label>Events URL</label>
               <input name="events_${safeName}" value="${urls.events || ''}" />
+              <label>Leaderboard URL</label>
+              <input name="leaderboard_${safeName}" value="${urls.leaderboard || ''}" />
+              <label>Logo URL</label>
+              <input name="logo_${safeName}" value="${urls.logo || ''}" />
               <button type="button" onclick="updateSingleTournament('${name}', '${safeName}')">Update</button>
               <button type="button" onclick="deleteTournament('${name}')">Delete</button>
             </div>
@@ -81,6 +89,8 @@
       const uidInput = document.querySelector(`input[name="uid_${safeName}"]`);
       const participantsInput = document.querySelector(`input[name="participants_${safeName}"]`);
       const eventsInput = document.querySelector(`input[name="events_${safeName}"]`);
+      const leaderboardInput = document.querySelector(`input[name="leaderboard_${safeName}"]`);
+      const logoInput = document.querySelector(`input[name="logo_${safeName}"]`);
 
       if (!participantsInput || !eventsInput || !uidInput) {
         alert(`❌ Missing fields for ${name}`);
@@ -91,7 +101,9 @@
         [name]: {
           uid: uidInput.value.trim(),
           participants: participantsInput.value.trim(),
-          events: eventsInput.value.trim()
+          events: eventsInput.value.trim(),
+          leaderboard: leaderboardInput.value.trim(),
+          logo: logoInput.value.trim()
         }
       };
 
@@ -114,6 +126,8 @@
       const name = form.name.value.trim();
       const participants = form.participants.value.trim();
       const events = form.events.value.trim();
+      const leaderboard = form.leaderboard.value.trim();
+      const logo = form.logo.value.trim();
 
       if (!name || !participants || !events) return;
 
@@ -123,7 +137,9 @@
         [name]: {
           uid,
           participants,
-          events
+          events,
+          leaderboard,
+          logo
         }
       };
 
