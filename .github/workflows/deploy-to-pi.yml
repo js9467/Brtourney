@@ -26,13 +26,14 @@ jobs:
           fi
 
       - name: Upload changed files to Raspberry Pi
-        uses: appleboy/scp-action@v0.1.4
-        with:
-          host: 64.99.148.73
-          username: pi
-          key: ${{ secrets.PI_SSH_KEY }}
-          source: ${{ steps.changed.outputs.files }}
-          target: /bigrock-app
+  uses: appleboy/scp-action@v0.1.4
+  with:
+    host: 64.99.148.73
+    username: pi
+    key: ${{ secrets.PI_SSH_KEY }}
+    source: ${{ steps.changed.outputs.files }}
+    target: /home/pi/bigrock-app
+
 
       - name: Restart service only if a .py file changed
         if: env.py_changed == 'true'
