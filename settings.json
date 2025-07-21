@@ -9,7 +9,9 @@
   "Edisto Invitational": {
     "uid": "edisto_invitational_2025",
     "participants": "https://www.reeltimeapps.com/live/tournaments/2025-edisto-invitational-billfish/participants",
-    "events": "https://www.reeltimeapps.com/live/tournaments/2025-edisto-invitational-billfish/activities"
+    "events": "https://www.reeltimeapps.com/live/tournaments/2025-edisto-invitational-billfish/activities",
+    "leaderboard": "https://www.reeltimeapps.com/live/tournaments/2025-lonestar-shootout/leaderboards",
+    "logo": ""
   },
   "KWLA": null,
   "Kids Tournament": null,
