@@ -22,5 +22,12 @@
     "events": "https://www.reeltimeapps.com/live/tournaments/2025-lonestar-shootout/activities",
     "leaderboard": "https://www.reeltimeapps.com/live/tournaments/2025-lonestar-shootout/leaderboards",
     "logo": ""
+  },
+  "River Center Junior Angler Tournament": {
+    "uid": "river_center_junior_angler_tournament_2025",
+    "participants": "https://www.reeltimeapps.com/live/tournaments/2025-river-center-junior-angler-tournament/participants",
+    "events": "https://www.reeltimeapps.com/live/tournaments/2025-river-center-junior-angler-tournament/activities",
+    "leaderboard": "https://www.reeltimeapps.com/live/tournaments/2025-river-center-junior-angler-tournament/leaderboards",
+    "logo": ""
   }
 }
