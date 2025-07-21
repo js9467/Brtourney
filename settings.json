@@ -30,11 +30,5 @@
     "leaderboard": "https://www.reeltimeapps.com/live/tournaments/2025-river-center-junior-angler-tournament/leaderboards",
     "logo": ""
   },
-  "56th Beach Haven White Marlin Invitational": {
-    "uid": "56th_beach_haven_white_marlin_invitational_2025",
-    "participants": "https://www.reeltimeapps.com/live/tournaments/56th-beach-haven-white-marlin-invitational/participants",
-    "events": "https://www.reeltimeapps.com/live/tournaments/56th-beach-haven-white-marlin-invitational/activities",
-    "leaderboard": "https://www.reeltimeapps.com/live/tournaments/56th-beach-haven-white-marlin-invitational/leaderboards",
-    "logo": ""
-  }
+  "56th Beach Haven White Marlin Invitational": null
 }
