@@ -37,5 +37,12 @@
     "events": "https://www.reeltimeapps.com/live/tournaments/2025-corpus-christi-big-game-fishing-club/activities",
     "leaderboard": "https://www.reeltimeapps.com/live/tournaments/2025-corpus-christi-big-game-fishing-club/leaderboards",
     "logo": "https://cdn.reeltimeapps.com/tournaments/logos/000/000/757/original/LogoLight.png?1747113279"
+  },
+  "Big Game Battle, Nantucket": {
+    "uid": "big_game_battle_nantucket_2025",
+    "participants": "https://www.reeltimeapps.com/live/tournaments/2025-big-game-battle/participants",
+    "events": "https://www.reeltimeapps.com/live/tournaments/2025-big-game-battle/activities",
+    "leaderboard": "https://www.reeltimeapps.com/live/tournaments/2025-big-game-battle/leaderboards",
+    "logo": ""
   }
 }
