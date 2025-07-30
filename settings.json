@@ -4,7 +4,8 @@
     "participants": "https://www.reeltimeapps.com/live/tournaments/67th-annual-big-rock-blue-marlin-tournament/participants",
     "events": "https://www.reeltimeapps.com/live/tournaments/67th-annual-big-rock-blue-marlin-tournament/activities",
     "leaderboard": "https://www.reeltimeapps.com/live/tournaments/67th-annual-big-rock-blue-marlin-tournament/leaderboards",
-    "logo": "https://thebigrock.com/wp-content/uploads/2022/09/WHITELOGOBR.png"
+    "logo": "https://thebigrock.com/wp-content/uploads/2022/09/WHITELOGOBR.png",
+    "stream": "https://cs.ebmcdn.net/eastbay-live-hs-1/event/mp4:bigrockradio/playlist.m3u8"
   },
   "Edisto Invitational": {
     "uid": "edisto_invitational_2025",
