@@ -10,12 +10,20 @@
     input { width: 100%; padding: 6px; margin-bottom: 10px; }
     button { padding: 10px 15px; margin-top: 10px; margin-right: 10px; }
     .tournament-block { border: 1px solid #ccc; padding: 15px; margin-bottom: 20px; border-radius: 8px; }
-    #fallbackLink { display: inline-block; margin-top: 10px; color: blue; text-decoration: underline; }
+    #fallbackSection { border: 2px dashed #999; padding: 15px; margin-bottom: 30px; border-radius: 8px; background: #f9f9f9; }
     .version { font-size: 0.8em; color: gray; margin-top: 20px; }
   </style>
 </head>
 <body>
   <h1>Tournament Feed Manager</h1>
+
+  <div id="fallbackSection">
+    <h2>Global Fallback Stream</h2>
+    <label>Fallback Stream URL</label>
+    <input id="globalFallbackInput" />
+    <button onclick="updateFallbackStream()">Update Fallback Stream</button>
+  </div>
+
   <div id="tournamentList"></div>
 
   <h2>Add New Tournament</h2>
@@ -30,6 +38,8 @@
     <input name="leaderboard" />
     <label>Logo URL</label>
     <input name="logo" />
+    <label>Stream URL</label>
+    <input name="stream" />
     <button type="submit">Add Tournament</button>
   </form>
 
@@ -37,7 +47,7 @@
     Having trouble submitting? <a id="fallbackLink" href="#" target="_blank">Open Issue Manually</a>
   </p>
 
-  <p class="version">UI Version: 1.0.8</p>
+  <p class="version">UI Version: 1.1.0</p>
 
   <script>
     let currentData = {};
@@ -52,11 +62,15 @@
       try {
         const res = await fetch('settings.json');
         currentData = await res.json();
+
+        const fallbackInput = document.getElementById("globalFallbackInput");
+        fallbackInput.value = currentData.fallback_stream || '';
+
         const container = document.getElementById("tournamentList");
         container.innerHTML = "<h2>Edit Existing Tournaments</h2>";
 
         Object.entries(currentData).forEach(([name, urls]) => {
-          if (!urls || typeof urls !== 'object') return;
+          if (!urls || typeof urls !== 'object' || name === 'fallback_stream') return;
 
           const safeName = encodeURIComponent(name);
           const blockId = `block_${safeName}`;
@@ -74,6 +88,8 @@
               <input name="leaderboard_${safeName}" value="${urls.leaderboard || ''}" />
               <label>Logo URL</label>
               <input name="logo_${safeName}" value="${urls.logo || ''}" />
+              <label>Stream URL</label>
+              <input name="stream_${safeName}" value="${urls.stream || ''}" />
               <button type="button" onclick="updateSingleTournament('${name}', '${safeName}')">Update</button>
               <button type="button" onclick="deleteTournament('${name}')">Delete</button>
             </div>
@@ -91,6 +107,7 @@
       const eventsInput = document.querySelector(`input[name="events_${safeName}"]`);
       const leaderboardInput = document.querySelector(`input[name="leaderboard_${safeName}"]`);
       const logoInput = document.querySelector(`input[name="logo_${safeName}"]`);
+      const streamInput = document.querySelector(`input[name="stream_${safeName}"]`);
 
       if (!participantsInput || !eventsInput || !uidInput) {
         alert(`❌ Missing fields for ${name}`);
@@ -103,7 +120,8 @@
           participants: participantsInput.value.trim(),
           events: eventsInput.value.trim(),
           leaderboard: leaderboardInput.value.trim(),
-          logo: logoInput.value.trim()
+          logo: logoInput.value.trim(),
+          stream: streamInput.value.trim()
         }
       };
 
@@ -112,11 +130,15 @@
 
     function deleteTournament(name) {
       if (!confirm(`Are you sure you want to delete "${name}"?`)) return;
+      const update = { [name]: null };
+      submitIssue(update);
+    }
 
-      const update = {
-        [name]: null
-      };
+    function updateFallbackStream() {
+      const stream = document.getElementById("globalFallbackInput").value.trim();
+      if (!stream) return alert("⚠️ Please enter a fallback stream URL.");
 
+      const update = { fallback_stream: stream };
       submitIssue(update);
     }
 
@@ -128,18 +150,19 @@
       const events = form.events.value.trim();
       const leaderboard = form.leaderboard.value.trim();
       const logo = form.logo.value.trim();
+      const stream = form.stream.value.trim();
 
       if (!name || !participants || !events) return;
 
       const uid = slugify(name) + "_" + new Date().getFullYear();
-
       const update = {
         [name]: {
           uid,
           participants,
           events,
           leaderboard,
-          logo
+          logo,
+          stream
         }
       };
 
