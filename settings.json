@@ -46,5 +46,5 @@
     "leaderboard": "https://www.reeltimeapps.com/live/tournaments/2025-big-game-battle/leaderboards",
     "logo": ""
   },
-  "fallback_stream": "https://ice2.somafm.com/groovesalad-128-aac.m3u8"
+  "fallback_stream": "https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8"
 }
