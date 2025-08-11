@@ -53,5 +53,13 @@
     "leaderboard": "https://www.reeltimeapps.com/live/tournaments/2025-big-game-battle/leaderboards",
     "logo": ""
   },
-  "fallback_stream": "https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8"
+  "fallback_stream": "https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8",
+  "The MidAtlantic": {
+    "uid": "the_midatlantic_2025",
+    "participants": "https://www.reeltimeapps.com/live/tournaments/the-midatlantic-2025/participants",
+    "events": "https://www.reeltimeapps.com/live/tournaments/the-midatlantic-2025/activities",
+    "leaderboard": "https://www.reeltimeapps.com/live/tournaments/the-midatlantic-2025/leaderboards",
+    "logo": "https://cdn.reeltimeapps.com/tournaments/logos/000/000/680/original/TheMidAtlantic.png?1734102131",
+    "stream": ""
+  }
 }
