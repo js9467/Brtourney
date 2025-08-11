@@ -31,7 +31,14 @@
     "leaderboard": "https://www.reeltimeapps.com/live/tournaments/2025-river-center-junior-angler-tournament/leaderboards",
     "logo": "https://cdn.reeltimeapps.com/tournaments/logos/000/000/766/original/JrAnglerLogo-2025.png?1751055850"
   },
-  "56th Beach Haven White Marlin Invitational": null,
+  "56th Beach Haven White Marlin Invitational": {
+    "uid": "56th_beach_haven_white_marlin_invitational_2025",
+    "participants": "https://www.reeltimeapps.com/live/tournaments/56th-beach-haven-white-marlin-invitational/participants",
+    "events": "https://www.reeltimeapps.com/live/tournaments/56th-beach-haven-white-marlin-invitational/activities",
+    "leaderboard": "https://www.reeltimeapps.com/live/tournaments/56th-beach-haven-white-marlin-invitational/leaderboards",
+    "logo": "https://cdn.reeltimeapps.com/tournaments/logos/000/000/700/original/AppIcon-2025.png?1749563603",
+    "stream": ""
+  },
   "Corpus Christi Big Game Fishing Club": {
     "uid": "corpus_christi_big_game_fishing_club_2025",
     "participants": "https://www.reeltimeapps.com/live/tournaments/2025-corpus-christi-big-game-fishing-club/participants",
