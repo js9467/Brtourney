@@ -61,5 +61,13 @@
     "leaderboard": "https://www.reeltimeapps.com/live/tournaments/the-midatlantic-2025/leaderboards",
     "logo": "https://cdn.reeltimeapps.com/tournaments/logos/000/000/680/original/TheMidAtlantic.png?1734102131",
     "stream": ""
+  },
+  "Pirates Cove Billfish Tournament 2025": {
+    "uid": "pirates_cove_billfish_tournament_2025_2025",
+    "participants": "https://pcbt.catchstat.com/Tournament/TeamListing",
+    "events": "null",
+    "leaderboard": "https://pcbt.catchstat.com/Default/Tournament/LiveScoring?TournamentID=356",
+    "logo": "https://cdn.reeltimeapps.com/tournaments/logos/000/000/646/original/iTunesArtwork_2x.png?1719770873",
+    "stream": "https://www.ebmcdn.net/webcast/flash/piratescove/piratescove-iframe.html?jwsource=cl"
   }
 }
