@@ -11,13 +11,7 @@
   "KWLA": null,
   "Kids Tournament": null,
   "Test": null,
-  "Lone Star Shootout": {
-    "uid": "lone_star_shootout_2025",
-    "participants": "https://www.reeltimeapps.com/live/tournaments/2025-lonestar-shootout/participants",
-    "events": "https://www.reeltimeapps.com/live/tournaments/2025-lonestar-shootout/activities",
-    "leaderboard": "https://www.reeltimeapps.com/live/tournaments/2025-lonestar-shootout/leaderboards",
-    "logo": "https://cdn.reeltimeapps.com/tournaments/logos/000/000/765/original/AppIcon.png?1747229771"
-  },
+  "Lone Star Shootout": null,
   "River Center Junior Angler Tournament": {
     "uid": "river_center_junior_angler_tournament_2025",
     "participants": "https://www.reeltimeapps.com/live/tournaments/2025-river-center-junior-angler-tournament/participants",
