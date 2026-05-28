@@ -1,10 +1,10 @@
 {
   "Big Rock": {
-    "uid": "big_rock_2025",
-    "participants": "https://www.reeltimeapps.com/live/tournaments/67th-annual-big-rock-blue-marlin-tournament/participants",
-    "events": "https://www.reeltimeapps.com/live/tournaments/67th-annual-big-rock-blue-marlin-tournament/activities",
-    "leaderboard": "https://www.reeltimeapps.com/live/tournaments/67th-annual-big-rock-blue-marlin-tournament/leaderboards",
-    "logo": "https://thebigrock.com/wp-content/uploads/2022/09/WHITELOGOBR.png",
+    "uid": "big_rock_2026",
+    "participants": "https://www.reeltime.app/tournaments/the-big-rock/2026/participants",
+    "events": "https://www.reeltime.app/tournaments/the-big-rock/2026/feed",
+    "leaderboard": "https://www.reeltime.app/tournaments/the-big-rock/2026/leaderboards",
+    "logo": "https://cdn.reeltimeapps.com/tournaments/avatars/000/000/826/original/thebigrock-2019.png?1765906798",
     "stream": "https://cs.ebmcdn.net/eastbay-live-hs-1/event/mp4:bigrockradio/playlist.m3u8"
   },
   "Edisto Invitational": {
