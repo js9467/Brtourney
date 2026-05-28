@@ -8,7 +8,14 @@
     "stream": "https://cs.ebmcdn.net/eastbay-live-hs-1/event/mp4:bigrockradio/playlist.m3u8"
   },
   "Edisto Invitational": null,
-  "KWLA": null,
+  "KWLA": {
+    "uid": "kwla_2026",
+    "participants": "https://www.reeltime.app/tournaments/kwla/2026/participants",
+    "events": "https://www.reeltime.app/tournaments/kwla/2026/feed",
+    "leaderboard": "https://www.reeltime.app/tournaments/kwla/2026/leaderboards",
+    "logo": "https://cdn.reeltimeapps.com/tournaments/avatars/000/000/874/original/Untitled_design_-_2026-04-09T102434.444.png?1775744699",
+    "stream": "https://cs.ebmcdn.net/eastbay-live-hs-1/event/mp4:bigrockradio/playlist.m3u8"
+  },
   "Kids Tournament": null,
   "Test": null,
   "Lone Star Shootout": null,
