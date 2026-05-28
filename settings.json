@@ -21,13 +21,7 @@
     "logo": "https://cdn.reeltimeapps.com/tournaments/logos/000/000/700/original/AppIcon-2025.png?1749563603",
     "stream": ""
   },
-  "Corpus Christi Big Game Fishing Club": {
-    "uid": "corpus_christi_big_game_fishing_club_2025",
-    "participants": "https://www.reeltimeapps.com/live/tournaments/2025-corpus-christi-big-game-fishing-club/participants",
-    "events": "https://www.reeltimeapps.com/live/tournaments/2025-corpus-christi-big-game-fishing-club/activities",
-    "leaderboard": "https://www.reeltimeapps.com/live/tournaments/2025-corpus-christi-big-game-fishing-club/leaderboards",
-    "logo": "https://cdn.reeltimeapps.com/tournaments/logos/000/000/757/original/LogoLight.png?1747113279"
-  },
+  "Corpus Christi Big Game Fishing Club": null,
   "Big Game Battle, Nantucket": {
     "uid": "big_game_battle_nantucket_2025",
     "participants": "https://www.reeltimeapps.com/live/tournaments/2025-big-game-battle/participants",
