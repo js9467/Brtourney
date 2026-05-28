@@ -12,13 +12,7 @@
   "Kids Tournament": null,
   "Test": null,
   "Lone Star Shootout": null,
-  "River Center Junior Angler Tournament": {
-    "uid": "river_center_junior_angler_tournament_2025",
-    "participants": "https://www.reeltimeapps.com/live/tournaments/2025-river-center-junior-angler-tournament/participants",
-    "events": "https://www.reeltimeapps.com/live/tournaments/2025-river-center-junior-angler-tournament/activities",
-    "leaderboard": "https://www.reeltimeapps.com/live/tournaments/2025-river-center-junior-angler-tournament/leaderboards",
-    "logo": "https://cdn.reeltimeapps.com/tournaments/logos/000/000/766/original/JrAnglerLogo-2025.png?1751055850"
-  },
+  "River Center Junior Angler Tournament": null,
   "56th Beach Haven White Marlin Invitational": {
     "uid": "56th_beach_haven_white_marlin_invitational_2025",
     "participants": "https://www.reeltimeapps.com/live/tournaments/56th-beach-haven-white-marlin-invitational/participants",
