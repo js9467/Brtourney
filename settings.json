@@ -7,7 +7,7 @@
     "logo": "https://cdn.reeltimeapps.com/tournaments/avatars/000/000/826/original/thebigrock-2019.png?1765906798",
     "stream": "https://cs.ebmcdn.net/eastbay-live-hs-1/event/mp4:bigrockradio/playlist.m3u8"
   },
-  "Edisto Invitational": null,
+ 
   "KWLA": {
     "uid": "kwla_2026",
     "participants": "https://www.reeltime.app/tournaments/kwla/2026/participants",
@@ -15,28 +15,4 @@
     "leaderboard": "https://www.reeltime.app/tournaments/kwla/2026/leaderboards",
     "logo": "https://cdn.reeltimeapps.com/tournaments/avatars/000/000/874/original/Untitled_design_-_2026-04-09T102434.444.png?1775744699",
     "stream": "https://cs.ebmcdn.net/eastbay-live-hs-1/event/mp4:bigrockradio/playlist.m3u8"
-  },
-  "Kids Tournament": null,
-  "Test": null,
-  "Lone Star Shootout": null,
-  "River Center Junior Angler Tournament": null,
-  "56th Beach Haven White Marlin Invitational": {
-    "uid": "56th_beach_haven_white_marlin_invitational_2025",
-    "participants": "https://www.reeltimeapps.com/live/tournaments/56th-beach-haven-white-marlin-invitational/participants",
-    "events": "https://www.reeltimeapps.com/live/tournaments/56th-beach-haven-white-marlin-invitational/activities",
-    "leaderboard": "https://www.reeltimeapps.com/live/tournaments/56th-beach-haven-white-marlin-invitational/leaderboards",
-    "logo": "https://cdn.reeltimeapps.com/tournaments/logos/000/000/700/original/AppIcon-2025.png?1749563603",
-    "stream": ""
-  },
-  "Corpus Christi Big Game Fishing Club": null,
-  "Big Game Battle, Nantucket": {
-    "uid": "big_game_battle_nantucket_2025",
-    "participants": "https://www.reeltimeapps.com/live/tournaments/2025-big-game-battle/participants",
-    "events": "https://www.reeltimeapps.com/live/tournaments/2025-big-game-battle/activities",
-    "leaderboard": "https://www.reeltimeapps.com/live/tournaments/2025-big-game-battle/leaderboards",
-    "logo": ""
-  },
-  "fallback_stream": "https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8",
-  "The MidAtlantic": null,
-  "Pirates Cove Billfish Tournament 2025": null
-}
+  }
