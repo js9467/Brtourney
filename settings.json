@@ -7,13 +7,7 @@
     "logo": "https://cdn.reeltimeapps.com/tournaments/avatars/000/000/826/original/thebigrock-2019.png?1765906798",
     "stream": "https://cs.ebmcdn.net/eastbay-live-hs-1/event/mp4:bigrockradio/playlist.m3u8"
   },
-  "Edisto Invitational": {
-    "uid": "edisto_invitational_2025",
-    "participants": "https://www.reeltimeapps.com/live/tournaments/2025-edisto-invitational-billfish/participants",
-    "events": "https://www.reeltimeapps.com/live/tournaments/2025-edisto-invitational-billfish/activities",
-    "leaderboard": "https://www.reeltimeapps.com/live/tournaments/2025-edisto-invitational-billfish/leaderboards",
-    "logo": "https://cdn.reeltimeapps.com/tournaments/logos/000/000/720/original/AppIconLight2025.png?1740721490"
-  },
+  "Edisto Invitational": null,
   "KWLA": null,
   "Kids Tournament": null,
   "Test": null,
